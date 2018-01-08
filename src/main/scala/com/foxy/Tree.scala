@@ -3,6 +3,8 @@ package com.foxy
 /**
   * Created by Sem Babenko.
   */
-class Tree {
+trait Tree[A, B] {
+
+  def put(key: A, value: B)
 
 }
