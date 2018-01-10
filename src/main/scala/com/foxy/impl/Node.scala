@@ -3,10 +3,10 @@ package com.foxy.impl {
   /**
     * Created by Sem Babenko.
     */
-  class Node[K, V](var key : K = Nil, var value : V = Nil,
-                   var left : Node[K, V] = None[Any, Any],
-                   var right : Node[K, V] = None[Any, Any],
-                   var parent : Node[K, V] = None[Any, Any]) {
+  class Node[K, V](var key : K = null, var value : V = null,
+                   var left : Node[K, V] = null,
+                   var right : Node[K, V] = null,
+                   var parent : Node[K, V] = null) {
 
     def right(node : Node[K, V]): Node[K, V] = {
       right = node

@@ -7,12 +7,12 @@ import com.foxy.Tree
   */
 class BTree[K, V] extends Tree[K, V] {
 
-  val root: Node[K, V] = new Node
+  var root: Node[K, V] = null
 
   override def put(key: K, value: V): Unit =
-    root.value match {
-      case Nil => root.key(key).value(value)
-      case _ =>
+    root match {
+      case null => root = new Node[K, V](key, value)
+      case _ => newNode(key, value)
     }
 
   private def newNode(key: K, value: V): Unit = {
@@ -26,16 +26,16 @@ class BTree[K, V] extends Tree[K, V] {
   private def compare(key: Comparable[K], newNode: Node[K, V], existNode: Node[K, V]): Unit = {
 
     key.compareTo(existNode.key) match {
-      case 1 => initOrLookup(key, newNode, existNode, () => existNode.right)
-      case -1 => initOrLookup(key, newNode, existNode, () => existNode.right)
+      case 1 => initOrLookup(key, newNode, existNode, () => existNode.right, () => existNode.right = newNode)
+      case -1 => initOrLookup(key, newNode, existNode, () => existNode.left, () => existNode.left = newNode)
       case 0 => existNode.value = newNode.value
     }
   }
 
-  private def initOrLookup(key: Comparable[K], newNode: Node[K, V], existNode: Node[K, V], supply: () => Node[K, V]): Unit = {
+  private def initOrLookup(key: Comparable[K], newNode: Node[K, V], existNode: Node[K, V], supply: () => Node[K, V], init: () => Unit): Unit = {
     supply.apply() match {
-      case null => existNode.right = newNode
-      case nextNode :_ => compare(key, newNode, nextNode)
+      case null => init()
+      case _ => compare(key, newNode, supply.apply())
     }
   }
 

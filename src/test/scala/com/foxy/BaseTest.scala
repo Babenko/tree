@@ -1,10 +1,10 @@
 package com.foxy
 
-import org.scalatest.FunSpec
+import org.scalatest.{FlatSpec, Matchers}
 
 /**
   * Created by Sem Babenko.
   */
-class BaseTest extends FunSpec{
+class BaseTest extends FlatSpec with Matchers{
 
 }
