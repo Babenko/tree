@@ -18,14 +18,24 @@ class BTree[K, V] extends Tree[K, V] {
   private def newNode(key: K, value: V): Unit = {
     val newNode = new Node[K, V](key, value)
 
-    value match {
-      case Comparable =>
+    key match {
+      case x: Comparable[K] => compare(x, newNode, root)
     }
   }
 
-  private def compare(key: Comparable[K], newNode: Node[K, V], currentNode: Node[K, V]): Unit = {
-    key.compareTo(currentNode.key) match {
-      case 1 => compare(key, newNode, currentNode)
+  private def compare(key: Comparable[K], newNode: Node[K, V], existNode: Node[K, V]): Unit = {
+
+    key.compareTo(existNode.key) match {
+      case 1 => initOrLookup(key, newNode, existNode, () => existNode.right)
+      case -1 => initOrLookup(key, newNode, existNode, () => existNode.right)
+      case 0 => existNode.value = newNode.value
+    }
+  }
+
+  private def initOrLookup(key: Comparable[K], newNode: Node[K, V], existNode: Node[K, V], supply: () => Node[K, V]): Unit = {
+    supply.apply() match {
+      case null => existNode.right = newNode
+      case nextNode :_ => compare(key, newNode, nextNode)
     }
   }
 
