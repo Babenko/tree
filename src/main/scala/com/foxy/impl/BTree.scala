@@ -25,7 +25,7 @@ class BTree[K, V] extends Tree[K, V] {
 
   private def compare(key: Comparable[K], newNode: Node[K, V], currentNode: Node[K, V]): Unit = {
     key.compareTo(currentNode.key) match {
-      case 1 => compare(key, newNode,)
+      case 1 => compare(key, newNode, currentNode)
     }
   }
 
