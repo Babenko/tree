@@ -6,7 +6,8 @@ package com.foxy.impl {
   class Node[K, V](var key : K = null, var value : V = null,
                    var left : Node[K, V] = null,
                    var right : Node[K, V] = null,
-                   var parent : Node[K, V] = null) {
+                   var parent : Node[K, V] = null,
+                   var next : Node[K, V] = null) {
 
     def right(node : Node[K, V]): Node[K, V] = {
       right = node
@@ -26,6 +27,10 @@ package com.foxy.impl {
     }
     def value(value: V) : Node[K, V] = {
       this.value = value
+      this
+    }
+    def next(next: Node[K, V]) : Node[K, V] = {
+      this.next = next
       this
     }
 
