@@ -8,6 +8,7 @@ import com.foxy.Tree
 class BTree[K, V] extends Tree[K, V] {
 
   var root: Node[K, V] = null
+  var height = 0
 
   override def put(key: K, value: V): Unit =
     root match {
