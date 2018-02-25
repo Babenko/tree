@@ -7,4 +7,6 @@ trait Tree[A, B] {
 
   def put(key: A, value: B)
 
+  def height(): Int
+
 }
