@@ -2,13 +2,20 @@ package com.foxy.impl
 
 import com.foxy.Tree
 
+import scala.collection.mutable.ListBuffer
+
 /**
   * Created by Sem Babenko.
   */
 class BTree[K, V] extends Tree[K, V] {
 
   var root: Node[K, V] = null
-  var height = 0
+
+  override def height(): Int = {
+    val list = new ListBuffer[Int]()
+    calculateHeight(root, list, 0)
+    list.max
+  }
 
   override def put(key: K, value: V): Unit =
     root match {
@@ -40,6 +47,14 @@ class BTree[K, V] extends Tree[K, V] {
     }
   }
 
-
+  private def calculateHeight(node: Node[K, V], list: ListBuffer[Int], deep: Int): Unit = {
+    val lDeep = deep + 1
+    list += lDeep
+    if (node.right != null) {
+      calculateHeight(node.right, list, lDeep)
+    } else if(node.left != null) {
+      calculateHeight(node.left, list, lDeep)
+    }
+  }
 
 }
