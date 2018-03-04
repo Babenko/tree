@@ -46,4 +46,28 @@ class BTreeTest extends BaseTest {
     tree.height() should equal(4)
   }
 
+  /*
+          0
+        /   \
+             1
+            / \
+               2
+              / \
+                 3
+                / \
+                   4
+                  / \
+                     5
+  */
+  "Test height " should " be 6" in {
+    val tree :Tree[Int, Int] = new BTree()
+    tree.put(0, 0)
+    tree.put(1, 1)
+    tree.put(2, 2)
+    tree.put(3, 3)
+    tree.put(4, 4)
+    tree.put(5, 5)
+    tree.height() should equal(6)
+  }
+
 }
