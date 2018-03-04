@@ -52,7 +52,8 @@ class BTree[K, V] extends Tree[K, V] {
     list += lDeep
     if (node.right != null) {
       calculateHeight(node.right, list, lDeep)
-    } else if(node.left != null) {
+    }
+    if(node.left != null) {
       calculateHeight(node.left, list, lDeep)
     }
   }
