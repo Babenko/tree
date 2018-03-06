@@ -19,7 +19,7 @@ class BTreeTest extends BaseTest {
     tree.put(1, 1)
     tree.put(2, 2)
     tree.put(0, 0)
-    tree.height() should equal(2)
+    tree.height() should equal(1)
   }
 
 
@@ -43,7 +43,7 @@ class BTreeTest extends BaseTest {
     tree.put(7, 7)
     tree.put(10, 10)
     tree.put(6, 6)
-    tree.height() should equal(4)
+    tree.height() should equal(3)
   }
 
   /*
@@ -67,7 +67,7 @@ class BTreeTest extends BaseTest {
     tree.put(3, 3)
     tree.put(4, 4)
     tree.put(5, 5)
-    tree.height() should equal(6)
+    tree.height() should equal(5)
   }
 
 }

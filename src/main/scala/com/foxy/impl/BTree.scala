@@ -13,7 +13,7 @@ class BTree[K, V] extends Tree[K, V] {
 
   override def height(): Int = {
     val list = new ListBuffer[Int]()
-    calculateHeight(root, list, 0)
+    calculateHeight(root, list, -1)
     list.max
   }
 
