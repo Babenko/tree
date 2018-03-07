@@ -58,4 +58,8 @@ class BTree[K, V] extends Tree[K, V] {
     }
   }
 
+  private def selfBalancing(): Unit = {
+
+  }
+
 }
