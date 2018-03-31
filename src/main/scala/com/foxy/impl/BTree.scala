@@ -12,6 +12,7 @@ class BTree[K, V] extends Tree[K, V] {
   var root: Node[K, V] = null
 
   override def height(): Int = {
+    if (root == null) return 0
     val list = new ListBuffer[Int]()
     calculateHeight(root, list, -1)
     list.max
@@ -59,7 +60,7 @@ class BTree[K, V] extends Tree[K, V] {
   }
 
   private def selfBalancing(): Unit = {
-    val height = height()
+//    val height = height()
   }
 
 }
